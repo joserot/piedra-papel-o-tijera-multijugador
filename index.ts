@@ -11,11 +11,22 @@ app.use(
 		extended: true,
 	}),
 );
+app.use(express.static("dist"));
+app.get("*", (req, res) => {
+	res.sendFile(__dirname + "/dist/index.html");
+});
 
+const dev = process.env.NODE_ENV == "development";
 const port = process.env.PORT || 4500;
 
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
+});
+
+app.get("/env", (req, res) => {
+	res.json({
+		environment: process.env.NODE_ENV,
+	});
 });
 
 const userCollection = firestore.collection("users");

@@ -2,7 +2,8 @@ import { db } from "./rtdb";
 import { ref, onValue } from "firebase/database";
 import { connect } from "http2";
 
-const API_BASE_URL = "http://localhost:4500";
+// const API_BASE_URL = "http://localhost:4500";
+const API_BASE_URL = "https://piedra-papel-o-tijera-online.herokuapp.com";
 
 type Jugado = "piedra" | "papel" | "tijera" | "null";
 type Result = "userOneWin" | "userTwoWin" | "tie";
