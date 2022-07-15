@@ -29,10 +29,19 @@ export const state = {
 		for (const cb of this.listeners) {
 			cb();
 		}
-		console.log(this.getState());
+		window.localStorage.setItem("stateApp", JSON.stringify(newState));
 	},
 	initState() {
 		const cs = this.getState();
+		const stateApp = window.localStorage.getItem("stateApp");
+		let stateSaved = stateApp !== null ? JSON.parse(stateApp) : {};
+		cs.name = stateSaved.name !== null ? stateSaved.name : "";
+		cs.email = stateSaved.email !== null ? stateSaved.email : "";
+		cs.userId = stateSaved.userId !== null ? stateSaved.userId : "";
+		cs.roomId = stateSaved.roomId !== null ? stateSaved.roomId : "";
+		cs.rtdbRoomId = stateSaved.rtdbRoomId !== null ? stateSaved.rtdbRoomId : "";
+
+		this.setState(cs);
 	},
 	subscribe(callback) {
 		this.listeners.push(callback);

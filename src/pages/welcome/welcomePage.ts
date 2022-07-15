@@ -11,19 +11,16 @@ export function initWelcomePage() {
 		constructor() {
 			super();
 			this.shadow = this.attachShadow({ mode: "open" });
+			this.userId = state.getState().userId;
+			this.name = state.getState().name;
+			this.email = state.getState().email;
 		}
 		connectedCallback() {
 			state.subscribe(() => {
-				// this.userId = state.getState().userId;
-				// this.name = state.getState().name;
-				// this.email = state.getState().email;
-				// if (
-				// 	this.userId.length > 0 &&
-				// 	this.name.length > 0 &&
-				// 	this.email.length > 0
-				// ) {
-				// 	//saltar primeras pantallas
-				// }
+				this.userId = state.getState().userId;
+				this.name = state.getState().name;
+				this.email = state.getState().email;
+				this.render();
 			});
 			this.render();
 		}
@@ -78,6 +75,23 @@ export function initWelcomePage() {
 
 			/********************FUNCTIONS *************************/
 
+			const storageSession = () => {
+				if (
+					this.userId.length > 0 &&
+					this.name.length > 0 &&
+					this.email.length > 0
+				) {
+					let message = confirm(`Iniciar sesión como ${this.name}?`);
+					if (message === true) {
+						Router.go("/iniciar-room");
+					} else {
+						this.userId.length = "";
+						this.name.length = "";
+						this.email.length = "";
+					}
+				}
+			};
+
 			const initSession = () => {
 				const $logIn = div.querySelector(".log-in");
 				const $signIn = div.querySelector(".sign-in");
@@ -91,6 +105,7 @@ export function initWelcomePage() {
 				});
 			};
 
+			storageSession();
 			initSession();
 		}
 	}
