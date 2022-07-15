@@ -114,10 +114,14 @@ export const state = {
 	async connectRoom(room) {
 		const cs = await this.getState();
 
-		let res = await fetch(
-			API_BASE_URL + "/rooms/" + room + "?userId=" + cs.userId,
-			{},
-		);
+		let res = await fetch(API_BASE_URL + "/connect", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				userId: cs.userId,
+				roomId: room,
+			}),
+		});
 
 		let data = await res.json();
 

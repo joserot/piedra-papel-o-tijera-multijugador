@@ -129,9 +129,8 @@ app.post("/rooms", async (req, res) => {
 });
 
 // Conectarse a room (limite de dos personas)
-app.get("/rooms/:roomId", async (req, res) => {
-	const { userId } = req.query;
-	const { roomId } = req.params;
+app.post("/connect", async (req, res) => {
+	const { userId, roomId } = req.body;
 
 	const doc = await userCollection.doc(userId.toString()).get();
 
