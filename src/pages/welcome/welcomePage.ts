@@ -17,10 +17,10 @@ export function initWelcomePage() {
 		}
 		connectedCallback() {
 			state.subscribe(() => {
-				this.userId = state.getState().userId;
-				this.name = state.getState().name;
-				this.email = state.getState().email;
-				this.render();
+				// this.userId = state.getState().userId;
+				// this.name = state.getState().name;
+				// this.email = state.getState().email;
+				// this.render();
 			});
 			this.render();
 		}
