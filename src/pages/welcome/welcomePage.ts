@@ -77,9 +77,9 @@ export function initWelcomePage() {
 
 			const storageSession = () => {
 				if (
-					this.userId.length === undefined ||
-					this.name.length === undefined ||
-					this.email.length === undefined
+					this.userId === undefined ||
+					this.name === undefined ||
+					this.email === undefined
 				) {
 					return false;
 				}
