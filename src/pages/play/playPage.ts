@@ -179,8 +179,6 @@ export function initPlayPage() {
 				const playUserOne = state.getState().play.play.userone.choice;
 				const playUserTwo = state.getState().play.play.usertwo.choice;
 
-				console.log(playUserOne, playUserTwo);
-
 				state.whoWin(playUserOne, playUserTwo);
 			};
 

@@ -92,9 +92,9 @@ export function initWelcomePage() {
 					if (message === true) {
 						Router.go("/iniciar-room");
 					} else {
-						this.userId.length = "";
-						this.name.length = "";
-						this.email.length = "";
+						this.userId = "";
+						this.name = "";
+						this.email = "";
 					}
 				}
 			};
